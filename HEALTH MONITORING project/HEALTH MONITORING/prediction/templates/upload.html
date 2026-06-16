@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% block body %}
+<br><br><br><br><br>
+{% load static %}
+<center>
+<div class="card shadow" style="width: 50rem;">
+   <div class="card-header">Location @</div>
+   <div class="card-header">GPS Data</div>
+   <div class="card-body">
+      <h5 class="card-title"></h5>
+      <form onsubmit="redirectToGoogleMaps(event)">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="text" class="form-control" value="{{lat}}" name="latitude" id="latitude" placeholder="Enter Latitude">
+          </div>
+          <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="text" class="form-control" value="{{long}}" name="longitude" id="longitude" placeholder="Enter Longitude">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </div>
+</div>
+<br>
+<div class="card shadow" style="width: 32rem;">
+  <div class="card-body">
+    {% if status %}
+    <img src="{% static 'alert.jpg' %}"> 
+    {% else %}
+    <img src="{% static 'safe.png' %}"> 
+    {% endif %}
+  </div>
+</div>
+</center>
+<br><br><br><br><br>
+<script>
+    function redirectToGoogleMaps(event) {
+        event.preventDefault(); // Prevent the default form submission
+        var latitude = document.getElementById('latitude').value;
+        var longitude = document.getElementById('longitude').value;
+        if (latitude && longitude) {
+            window.location.href = `http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=${latitude},${longitude}`;
+        } else {
+            alert('Please enter both latitude and longitude.');
+        }
+    }
+    </script>
+{% endblock %}
+

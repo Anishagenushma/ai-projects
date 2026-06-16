@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block body %}
+
+<br><br><br><br><br>
+<center>
+  {% load static %}
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    SaveDrive
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+ 
+<br>
+<div class="card" style="width: 32rem;">
+  <div class="card-body">
+    <img class="card-img-top" src="{% static 'images.jpeg' %}" alt="Card image cap">
+    <h5 class="card-title">{{label}}</h5>
+    
+    <p class="card-text">{{message}}</p>
+  </div>
+</div>
+</center>
+<br><br><br><br><br>
+{% endblock %}
